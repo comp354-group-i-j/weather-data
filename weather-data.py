@@ -15,7 +15,7 @@ timeframes = {
 
 url = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html'
 params = {
-    'format': 'csv', # xml is also available
+    'format': None,
     'stationID': 51157, # MONTREAL INTL A Station ID
     'Year': 2018,
     'Month': 1,
@@ -24,7 +24,9 @@ params = {
     'submit': 'Download Data',
 }
 
-r = requests.get(url, params=params)
+for format in ['csv', 'xml']:
+    params['format'] = format
+    r = requests.get(url, params=params)
 
-with open('weather-data.csv', 'w') as f:
-    f.write(r.text)
+    with open(f'weather-data.{format}', 'w') as f:
+        f.write(r.text)
