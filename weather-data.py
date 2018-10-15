@@ -1,7 +1,7 @@
 """
 Simple script to get weather data from climate.weather.gc.ca programmatically.
 
-More info: ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Readme.txt
+More info: ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Readme.txt
 """
 
 import requests
