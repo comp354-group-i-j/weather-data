@@ -20,7 +20,7 @@ params = {
     'Year': 2018,
     'Month': 1,
     'Day': 1, # not used and can be an arbitrary value
-    'timeframe': timeframes['daily'],
+    'timeframe': timeframes['hourly'],
     'submit': 'Download Data',
 }
 
