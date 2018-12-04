@@ -9,22 +9,6 @@ import datetime
 import requests
 
 
-now = datetime.datetime.now()
-
-start_year = 2018
-start_month = 4
-
-
-def get_year_month():
-    year = start_year
-    month = month_counter = start_month
-    while year < now.year or (year == now.year and month <= now.month):
-        yield year, month
-        month_counter += 1
-        month = ((month_counter - 1) % 12) + 1
-        year = start_year + ((month_counter - 1) // 12)
-
-
 timeframes = {
     'hourly': 1,
     'daily': 2,
@@ -38,16 +22,15 @@ params = {
     'Year': None,
     'Month': None,
     'Day': 1, # not used and can be an arbitrary value
-    'timeframe': timeframes['hourly'],
+    'timeframe': timeframes['daily'],
     'submit': 'Download Data',
 }
 
-for year, month in get_year_month():
-    params['Year'] = year
-    params['Month'] = month
-    for format in ['csv', 'xml']:
-        params['format'] = format
-        r = requests.get(url, params=params)
+params['Year'] = 2018
+params['Month'] = 1
+params['format'] = 'csv'
 
-        with open(f'data/{year}-{month}.{format}', 'w') as f:
-            f.write(r.text)
+r = requests.get(url, params=params)
+
+with open(f'data/2018-01.csv', 'w') as f:
+    f.write(r.text)
